@@ -1,0 +1,30 @@
+import requests
+
+WU_KEY = '8987cfce47870546'
+
+def get_temp_f(zipcode):
+    r = requests.get('http://api.wunderground.com/api/'+WU_KEY+'/conditions/q/'+zipcode+'.json')
+    data = r.json()
+    tempF = data['current_observation']['temp_f']
+    return tempF
+
+def get_todays_rain(zipcode):
+    r = requests.get('http://api.wunderground.com/api/'+WU_KEY+'/conditions/q/'+zipcode+'.json')
+    data = r.json()
+    todaysRain = data['current_observation']['precip_today_in']
+    return todaysRain
+
+def load_settings():
+    settings = []
+    file = open('settings.csv','r')
+    settings = file.readlines()
+    file.close()
+    settings.rstrip('[')
+    settings.rstrip(']')    
+    return settings.split(',')
+    
+def save_settings(settings):
+    file = open('settings.csv','w')
+    file.write(str(settings))
+    file.close()
+    
