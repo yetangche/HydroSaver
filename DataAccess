@@ -1,17 +1,18 @@
-import requests
+import requests, os.path, time
 
 WU_KEY = '8987cfce47870546'
 
-def get_temp_f(zipcode):
-    r = requests.get('http://api.wunderground.com/api/'+WU_KEY+'/conditions/q/'+zipcode+'.json')
+def get_yesterdays_rain(zipcode):
+    yyyymmdd = 
+    r = requests.get('http://api.wunderground.com/api/'+WU_KEY+'/history_'+yyyymmdd+'/q/'+zipcode+'.json')
     data = r.json()
-    tempF = data['current_observation']['temp_f']
-    return tempF
+    yesterdaysRain = data['history']['precipi']
+    return yesterdaysRain
 
 def get_todays_rain(zipcode):
-    r = requests.get('http://api.wunderground.com/api/'+WU_KEY+'/conditions/q/'+zipcode+'.json')
+    r = requests.get('http://api.wunderground.com/api/'+WU_KEY+'/forecast/q/'+zipcode+'.json')
     data = r.json()
-    todaysRain = data['current_observation']['precip_today_in']
+    todaysRain = data['forecast']['qpf_allday']['in']
     return todaysRain
 
 def load_settings():
