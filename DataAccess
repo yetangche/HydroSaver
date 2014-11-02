@@ -21,10 +21,10 @@ def load_settings():
     file.close()
     settings.rstrip('[')
     settings.rstrip(']')    
-    return settings.split(',')
+    settings = settings.split(',')
+    return settings
     
 def save_settings(settings):
     file = open('settings.csv','w')
     file.write(str(settings))
     file.close()
-    
