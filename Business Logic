@@ -1,2 +1,7 @@
 import system, os.path, time
 
+class HydroSaver:
+
+  def __init__(self):
+     self.
+
