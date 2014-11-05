@@ -4,18 +4,15 @@ SAND = .2
 LOAM = .1
 CLAY = .07
 
-class HydroSaver:
 
-  def __init__(self):
-     self.settings = load_settings()
 
-#user input for Warm/Cool grass then pull Amount
-#needed based on current date info from Wunderground
-#precipitation = previous day reading
-#forcast = upcoming day reading
-#soil = use declaration from user input
+  #user input for Warm/Cool grass then pull Amount
+  #needed based on current date info from Wunderground
+  #precipitation = previous day reading
+  #forcast = upcoming day reading
+  #soil = use declaration from user input
 
-def tempGrass(grassType):
+  def tempGrass(grassType):
     if grassType == "Warm":
         file = open("warm_grass.txt","r")
         warmGrass = file.readline()
@@ -31,7 +28,7 @@ def tempGrass(grassType):
     else:
         return error
         
-def sprinklerTime(needed,zipcode):
+  def sprinklerTime(needed, zipcode):
     precipitation = get_yesterdays_rain(zipcode)
     forcecast = get_todays_rain(zipcode)
     minutes = (needed-(precipitation-forecast-soil))*60
